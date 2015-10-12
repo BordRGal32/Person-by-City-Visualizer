@@ -1,0 +1,47 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="personCity">
+    <head>
+        <!-- META -->
+        <meta charset="utf-8">
+        <title>Who Lives Where?</title>
+        <!-- SCROLLS -->
+        <link rel="stylesheet" href="css/bootstrap.css"><!-- load bootstrap -->
+        <link rel="stylesheet" href="css/app.css">
+        <!-- SPELLS -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    </head>
+
+
+    <body>
+        <div class="container">
+            <div id="personCityList">
+                <div ng-controller="AppCtrl" class="col-md-4 leftspan" >
+                    <h2>Enter a Person and City</h2>
+                    <form name="createEntry">
+                        <div class="form-group">
+                            <input type="text" placeholder="Full Name" ng-model="name" id="personName">
+                            <input type="text" placeholder="State" ng-model="state">
+                            <button type="submit" ng-click="updatePerson()" class="btn" >Update</button>
+                        </div>
+                    </form>
+
+                    <div class="entries_list">
+                        <ul>
+                            <li ng-repeat="entry in entries">{{ entry.name }}: {{ entry.state | uppercase}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                </div>
+            </div>
+        </div>
+
+    <!-- APP SCRIPTS -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    </body>
+</html>
