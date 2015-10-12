@@ -1,2 +1,28 @@
+.forcelayout_zone {
+    border: solid 1px #ccc;
+    width: 800px;
+    height: 700px;
+    margin-top: 65px;
+}
 
+body {
+    padding-top: 20px;
+}
 
+h1 {
+    text-align: center;
+}
+
+input {
+    margin-bottom: 2px;
+}
+
+.btn {
+    padding: 4px 12px;
+}
+.entries_list {
+    background: #E6E8FA;
+    border-radius: 5px;
+    height: 600px;
+    overflow: scroll;
+}

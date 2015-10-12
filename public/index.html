@@ -13,19 +13,21 @@
         <!-- SPELLS -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     </head>
 
 
     <body>
         <div class="container">
-            <div id="personCityList">
-                <div ng-controller="AppCtrl" class="col-md-4 leftspan" >
+            <h1>Where People Live Visualizer</h1>
+            <div id="personCityList" class="row">
+                <div ng-controller="AppCtrl" class="col-md-3" >
                     <h2>Enter a Person and City</h2>
                     <form name="createEntry">
                         <div class="form-group">
                             <input type="text" placeholder="Full Name" ng-model="name" id="personName">
                             <input type="text" placeholder="State" ng-model="state">
-                            <button type="submit" ng-click="updatePerson()" class="btn" >Update</button>
+                            <button type="submit" ng-click="updatePerson()" class="btn btn-primary" >Update</button>
                         </div>
                     </form>
 
@@ -35,7 +37,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-9 forcelayout_zone">
                 </div>
             </div>
         </div>
