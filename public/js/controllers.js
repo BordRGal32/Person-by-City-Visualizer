@@ -4,6 +4,10 @@
 var controllers = angular.module('personCity.controllers', []);
 
 controllers.controller('AppCtrl', function ($scope) {
+    // initialize the visualization API and build the graph.
+    var currentGraph = new window.visualizationAPI.nodeGraph;
+    currentGraph.initializeGraph();
+
     $scope.updatePerson = function() {
         var newEntry = {name: $scope.name, state: $scope.state};
         if(!$scope.hasOwnProperty('entries')) {
