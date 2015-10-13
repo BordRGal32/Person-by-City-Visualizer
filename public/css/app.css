@@ -26,3 +26,23 @@ input {
     height: 600px;
     overflow: scroll;
 }
+
+.link {
+    stroke-opacity: .6;
+    stroke-width: 1.5px;
+    stroke: #666;
+    fill: none;
+}
+
+.node_title {
+    pointer-events: none;
+    font: 10px sans-serif;
+}
+
+.name {
+    fill: blue;
+}
+
+.state {
+    fill: red;
+}
