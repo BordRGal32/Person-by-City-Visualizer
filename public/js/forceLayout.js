@@ -7,40 +7,68 @@
         this.force = null;
         this.graph = null;
         this.nodeMap = {};
+        this.linkMap = {};
+        this.graphData = {};
     };
 
+    /**
+    * Function instantiates d3.force and establishes initial parameters.
+    */
     nodeGraph.prototype.initializeGraph = function initializeGraph() {
         var width = 780,
             height = 680;
+
+        this.graphData.nodes = [];
+        this.graphData.links = [];
 
         this.svg = d3.select('.forcelayout_zone').append('svg')
             .attr('width', width)
             .attr('height', height);
 
         this.graph = this.svg.append('g');
+
+        // initialize force layout, bind to force nodes and links to graph data nodes and links.
         this.force = d3.layout.force()
             .gravity(0.05)
             .distance(100)
             .charge(-100)
-            .size([width, height]);
+            .size([width, height])
+            .nodes(this.graphData.nodes)
+            .links(this.graphData.links)
+            .start();
 
     };
 
-    nodeGraph.prototype.expandGraph = function expandGraph(jsonData) {
-        var graphData = this.buildNodeMap(jsonData);
+    nodeGraph.prototype.expandGraph = function expandGraph(formData) {
+        this._buildGraphData(formData);
+        this._drawNodesLinks();
 
-        this.force
-            .nodes(graphData.nodes)
-            .links(graphData.links);
 
+    };
+
+    /**
+    * Function generates a unique id
+    * @return {String}
+    */
+    nodeGraph.prototype._generateUUID = function _generateUUID() {
+        var d = new Date().getTime();
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = (d + Math.random()*16)%16 | 0;
+            d = Math.floor(d/16);
+            return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+        });
+        return uuid;
+    };
+
+    nodeGraph.prototype._drawNodesLinks = function _drawNodesLinks() {
         var link = this.graph.selectAll('.link');
-        link = link.data(graphData.links);
+        link = link.data(this.force.links());
         link.exit().remove();
         link.enter().append('line')
             .attr('class', 'link');
 
         var node = this.graph.selectAll('.node');
-        node = node.data(graphData.nodes);
+        node = node.data(this.force.nodes());
         node.exit().remove();
         node.enter().append('g')
             .attr('class', 'node')
@@ -69,24 +97,70 @@
                 }
 
         });
-
         this.force.start();
     };
 
-    nodeGraph.prototype.buildNodeMap = function buildNodeMap(jsonData) {
-        jsonData.nodes.forEach(function(node) {
-            if(!this.nodeMap.hasOwnProperty(node.id)) {
-                this.nodeMap[node.id] = node;
-            }
-        }.bind(this)) ;
+    nodeGraph.prototype._buildGraphData = function _buildGraphData(formData) {
+        var source,
+            sourceId,
+            target,
+            targetId;
 
-        jsonData.links.forEach(function(link) {
-            var sourceId = link.source,
-                targetId = link.target;
-            link.source = this.nodeMap[sourceId];
-            link.target = this.nodeMap[targetId];
-         }.bind(this));
-        return jsonData;
+        var createLink = function(source, target) {
+            this.graphData.links.push(
+                {
+                    id : this._generateUUID,
+                    source : source,
+                    target : target
+                }
+            );
+        }.bind(this);
+        formData.forEach(function(entity) {
+            if(this.nodeMap.hasOwnProperty(entity.name) === true) {
+                sourceId = this.nodeMap[entity.name].id;
+                source = this.nodeMap[entity.name];
+            } else {
+                sourceId = this._generateUUID();
+                source = {
+                    id : sourceId,
+                    title : entity.name,
+                    type : 'name'
+                };
+                this.nodeMap[entity.name] = source;
+                this.graphData.nodes.push(source);
+            }
+
+            if(this.nodeMap.hasOwnProperty(entity.state) === true) {
+                targetId = this.nodeMap[entity.state].id;
+                target = this.nodeMap[entity.state];
+            } else {
+                targetId = this._generateUUID();
+                target = {
+                    id : targetId,
+                    title : entity.state,
+                    type : 'state'
+                };
+                this.nodeMap[entity.state] = target;
+                this.graphData.nodes.push(target);
+            }
+
+            if(this.linkMap.hasOwnProperty(sourceId)) {
+                var linkExists = false;
+                this.linkMap[sourceId].forEach(function(linkId) {
+                    if(linkId === targetId) {
+                        linkExists = true;
+                    }
+                });
+                if(linkExists === false) {
+                    this.linkMap[sourceId].push(targetId);
+                    createLink(source, target);
+                }
+            } else {
+                this.linkMap[sourceId] = [];
+                this.linkMap[sourceId].push(targetId);
+                createLink(source, target);
+            }
+        }.bind(this));
     };
     window.visualizationAPI = window.visualizationAPI || {};
     window.visualizationAPI.nodeGraph = nodeGraph;

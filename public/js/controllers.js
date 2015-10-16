@@ -3,7 +3,7 @@
 
 var controllers = angular.module('personCity.controllers', []);
 
-controllers.controller('AppCtrl', function ($scope, $http) {
+controllers.controller('AppCtrl', function ($scope) {
     // initialize the visualization API and build the graph.
     var currentGraph = new window.visualizationAPI.nodeGraph();
     currentGraph.initializeGraph();
@@ -19,14 +19,7 @@ controllers.controller('AppCtrl', function ($scope, $http) {
         $scope.state = '';
         $('#personName').focus();
 
-
-        $http.post('/api/buildGraphData', $scope.entries)
-            .success(function(data) {
-                currentGraph.expandGraph(data);
-            })
-            .error(function(data){
-                console.log('Error: ' + data);
-            });
+        currentGraph.expandGraph($scope.entries);
 
     };
 });
