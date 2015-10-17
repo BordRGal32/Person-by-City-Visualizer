@@ -1,5 +1,5 @@
 /*jslint node: true */
 'use strict';
 
-var app = angular.module('personCity', ['personCity.controllers']);
+var app = angular.module('personCity', ['personCity.controllers', 'ui.bootstrap']);
 

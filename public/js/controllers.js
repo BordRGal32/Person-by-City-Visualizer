@@ -24,4 +24,17 @@ controllers.controller('AppCtrl', function ($scope) {
     };
 });
 
+controllers.controller('SubjectDropDownController', function($scope) {
+    $scope.colors = ['#076bb6', '#accbe8', '#ae70af',  '#551A8B',
+                    '#00CC00','#cbd48c', '#90ee90',  '#a9b2b1',
+                    '#9eceb4', '#e66665',  '#f47d43', '#ffd602',
+                    '#FF3300','#ff69b4', '#DDA0DD', '#8B668B' ]
+
+    $scope.selectedItem;
+    $scope.dropboxitemselected = function (item) {
+
+        $scope.selectedItem = item;
+        alert($scope.selectedItem);
+    }
+});
 

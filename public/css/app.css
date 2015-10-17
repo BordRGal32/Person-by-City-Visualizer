@@ -2,7 +2,6 @@
     border: solid 1px #ccc;
     width: 800px;
     height: 700px;
-    margin-top: 65px;
 }
 
 body {
@@ -46,3 +45,45 @@ input {
 .state {
     fill: red;
 }
+
+.navbar-default {
+    padding-left: 10px;
+    padding-top: 5px;
+    font-size: 16px;
+}
+
+ul {
+    width: 90px;
+    min-width: 90px !important;
+    position: relative;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 4;
+    overflow: hidden;
+}
+
+.dropdown-menu {
+    padding: 1px 0 !importants;
+}
+ul:before, ul:after {
+    text-align: center;
+    display: block;
+    border-bottom: 0;
+    width: 25%;
+}
+
+
+li {
+    text-align: right;
+    width: 25%;
+    float: left;
+    border: 1px solid white;
+    margin-bottom: -1px;
+    overflow: hidden;
+}
+
+li:nth-child(4n+4) {
+    margin-left: -1px;
+}
+
+
