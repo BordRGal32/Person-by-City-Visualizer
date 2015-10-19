@@ -76,7 +76,8 @@
 
         node.append('circle')
             .attr('class', function(d) { return d.type; })
-            .attr('r', 5);
+            .attr('r', 5)
+            .style('fill', function(d) { return d.color; });
 
         node.append('text')
             .attr('class', 'node_title')
