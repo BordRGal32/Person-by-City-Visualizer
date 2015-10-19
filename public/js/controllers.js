@@ -21,13 +21,13 @@ controllers.controller('AppCtrl', function ($scope) {
 
     $scope.updatePerson = function() {
 
-        var newEntry = {name: $scope.name, state: $scope.state};
+        var newEntry = {source: $scope.source, target: $scope.target};
         if(!$scope.hasOwnProperty('entries')) {
             $scope.entries = [];
         }
         $scope.entries.push(newEntry);
-        $scope.name = '';
-        $scope.state = '';
+        $scope.source = '';
+        $scope.target = '';
         $('#personName').focus();
 
         currentGraph.expandGraph($scope.entries);

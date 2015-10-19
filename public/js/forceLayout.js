@@ -116,31 +116,31 @@
             );
         }.bind(this);
         formData.forEach(function(entity) {
-            if(this.nodeMap.hasOwnProperty(entity.name) === true) {
-                sourceId = this.nodeMap[entity.name].id;
-                source = this.nodeMap[entity.name];
+            if(this.nodeMap.hasOwnProperty(entity.source) === true) {
+                sourceId = this.nodeMap[entity.source].id;
+                source = this.nodeMap[entity.source];
             } else {
                 sourceId = this._generateUUID();
                 source = {
                     id : sourceId,
-                    title : entity.name,
-                    type : 'name'
+                    title : entity.source,
+                    type : 'source'
                 };
-                this.nodeMap[entity.name] = source;
+                this.nodeMap[entity.source] = source;
                 this.graphData.nodes.push(source);
             }
 
-            if(this.nodeMap.hasOwnProperty(entity.state) === true) {
-                targetId = this.nodeMap[entity.state].id;
-                target = this.nodeMap[entity.state];
+            if(this.nodeMap.hasOwnProperty(entity.target) === true) {
+                targetId = this.nodeMap[entity.target].id;
+                target = this.nodeMap[entity.target];
             } else {
                 targetId = this._generateUUID();
                 target = {
                     id : targetId,
-                    title : entity.state,
-                    type : 'state'
+                    title : entity.target,
+                    type : 'target'
                 };
-                this.nodeMap[entity.state] = target;
+                this.nodeMap[entity.target] = target;
                 this.graphData.nodes.push(target);
             }
 
