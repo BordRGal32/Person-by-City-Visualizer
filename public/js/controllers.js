@@ -21,7 +21,16 @@ controllers.controller('AppCtrl', function ($scope) {
 
     $scope.updatePerson = function() {
 
-        var newEntry = {source: $scope.source, target: $scope.target};
+        var newEntry = {
+            source: {
+                title: $scope.source,
+                color: $scope.nodeColors.source
+            },
+            target : {
+                title : $scope.target,
+                color : $scope.nodeColors.target
+            }
+        };
         if(!$scope.hasOwnProperty('entries')) {
             $scope.entries = [];
         }

@@ -115,32 +115,35 @@
                 }
             );
         }.bind(this);
+
         formData.forEach(function(entity) {
-            if(this.nodeMap.hasOwnProperty(entity.source) === true) {
-                sourceId = this.nodeMap[entity.source].id;
-                source = this.nodeMap[entity.source];
+            if(this.nodeMap.hasOwnProperty(entity.source.title) === true) {
+                sourceId = this.nodeMap[entity.source.title].id;
+                source = this.nodeMap[entity.source.title];
             } else {
                 sourceId = this._generateUUID();
                 source = {
                     id : sourceId,
-                    title : entity.source,
+                    title : entity.source.title,
+                    color : entity.source.color,
                     type : 'source'
                 };
-                this.nodeMap[entity.source] = source;
+                this.nodeMap[entity.source.title] = source;
                 this.graphData.nodes.push(source);
             }
 
-            if(this.nodeMap.hasOwnProperty(entity.target) === true) {
-                targetId = this.nodeMap[entity.target].id;
-                target = this.nodeMap[entity.target];
+            if(this.nodeMap.hasOwnProperty(entity.target.title) === true) {
+                targetId = this.nodeMap[entity.target.title].id;
+                target = this.nodeMap[entity.target.title];
             } else {
                 targetId = this._generateUUID();
                 target = {
                     id : targetId,
-                    title : entity.target,
+                    title : entity.target.title,
+                    color : entity.target.color,
                     type : 'target'
                 };
-                this.nodeMap[entity.target] = target;
+                this.nodeMap[entity.target.title] = target;
                 this.graphData.nodes.push(target);
             }
 
