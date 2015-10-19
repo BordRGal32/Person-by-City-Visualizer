@@ -1,12 +1,23 @@
 /*jslint node: true */
 'use strict';
 
-var controllers = angular.module('personCity.controllers', []);
+var controllers = angular.module('Visualize.controllers', []);
 
 controllers.controller('AppCtrl', function ($scope) {
     // initialize the visualization API and build the graph.
     var currentGraph = new window.visualizationAPI.nodeGraph();
     currentGraph.initializeGraph();
+
+    $scope.nodeColors = {
+        source : '#6d8764',
+        target : '#6d8764'
+    };
+
+    $scope.colors = [ '#6d8764', '#008a00', '#00aba9', '#1ba1e2',
+                        '#0050ef', '#6a00ff', '#aa00ff', '#db0073',
+                        '#a20025', '#e51400', '#fa6800', '#f0a30a',
+                        '#825a2c', '#000000', '#647687', '#76608a'
+                    ]
 
     $scope.updatePerson = function() {
 
@@ -24,18 +35,4 @@ controllers.controller('AppCtrl', function ($scope) {
     };
 });
 
-controllers.controller('SubjectDropDownController', function($scope) {
-    $scope.colors = [ '#6d8764', '#008a00', '#00aba9', '#1ba1e2',
-                        '#0050ef', '#6a00ff', '#aa00ff', '#db0073',
-                        '#a20025', '#e51400', '#fa6800', '#f0a30a',
-                        '#825a2c', '#000000', '#647687', '#76608a'
-                    ]
-
-    $scope.selectedItem;
-    $scope.dropboxitemselected = function (item) {
-
-        $scope.selectedItem = item;
-        alert($scope.selectedItem);
-    }
-});
 
