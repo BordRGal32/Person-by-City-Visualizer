@@ -35,11 +35,12 @@ input {
     margin-left: 15px;
 }
 
-.entries_list {
+.visual-row {
     background: #b3c2bf;
     border-radius: 5px;
     height: 700px;
     overflow: scroll;
+    margin-right: 10px;
 }
 
 .link {
@@ -71,7 +72,7 @@ input {
 }
 
 .dropdown-menu {
-    padding: 1px 0 !importants;
+    padding: 1px 0 !important;
 }
 
 
@@ -115,4 +116,44 @@ input {
     margin-top: 20px;
 }
 
+.overlay {
+    top: 0;
+    left: 0;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    opacity: 0.5;
+    background-color: grey;
+}
+.set-metadata-modal-dialog {
+  /* A centered div above the overlay with a box shadow. */
+  z-index:10000;
+  position: fixed;
+  width: 100px; /* Default */
+
+  /* Center the dialog */
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+
+  background-color: #fff;
+}
+
+.set-metadata-modal-dialog-content {
+  padding:10px;
+  text-align: left;
+}
+.set-metadata-modal-close {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  display: inline-block;
+  font-weight: bold;
+  font-family: 'arial', 'sans-serif';
+}
 

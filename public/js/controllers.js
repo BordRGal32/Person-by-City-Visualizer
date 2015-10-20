@@ -42,6 +42,11 @@ controllers.controller('AppCtrl', function ($scope) {
         currentGraph.expandGraph($scope.entries);
 
     };
+
+    $scope.modalShown = false;
+    $scope.toggleModal = function() {
+        $scope.modalShown = !$scope.modalShown;
+    };
 });
 
 

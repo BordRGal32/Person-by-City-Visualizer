@@ -38,7 +38,11 @@
                     </form>
                 </div>
                 <div id="personCityList" class="row visual-container">
-                    <div class="col-md-3" >
+                    <div class="col-md-3 visual-row" >
+                        <button ng-click='toggleModal()'>Open Modal</button>
+                        <set-metadata show='modalShown'>
+                            <p>Modal Content Goes Here</p>
+                        </set-metadata>
                         <div class="entries_list">
                             <ul>
                                 <li ng-repeat="entry in entries">{{ entry.source.title }}: {{ entry.target.title | uppercase}}</li>
