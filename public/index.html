@@ -32,16 +32,35 @@
                             <color-picker colors="colors" selectedColor="nodeColors.source"></color-picker>
                             <label for="inputTarget" class="target-label"> Target </lbale>
                             <input type="text" placeholder="Target" ng-model="target" id="inputTarget">
-                            <color-picker colors="colors" selectedColor="nodeColors.target"></color-picker>
+
                             <button type="submit" ng-click="updatePerson()" class="btn btn-primary entity-submit-btn" >Update</bbutton>
                         </div>
                     </form>
                 </div>
                 <div id="personCityList" class="row visual-container">
                     <div class="col-md-3 visual-row" >
-                        <button ng-click='toggleModal()'>Open Modal</button>
+                        <button ng-click='toggleModal()'>Edit Metadata</button>
                         <set-metadata show='modalShown'>
-                            <p>Modal Content Goes Here</p>
+                        <!-- <p> Hello </p> -->
+                            <form name='"setMetadata' class="set-metadata">
+                                <div class="form-group">
+                                    <label for="dataSetTitle">Data Set Title</label>
+                                    <input type="text" ng-model="setTitle" id="dataSetTitle">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sourceCategory"> Source Category Title</label>
+                                    <input type="text" ng-model="setSourceCategory" id="sourceCategory">
+                                    <label for="sourceColor"> Source Color</lable>
+                                    <color-picker colors="colors" selectedColor="nodeColors.target"></color-picker>
+                                </div>
+                                <div class="form-group">
+                                    <label for="targetCategory"> Target Category Title</label>
+                                     <input type="text" ng-model="settargetCategory" id="targetCategory">
+                                    <label for="targetColor"> Target Color</lable>
+                                    <color-picker colors="colors" selectedColor="nodeColors.target"></color-picker>
+                                </div>
+                                <button type="submit" ng-click="updateMetadata()" class="btn btn-primary">Save</button>
+                            </form>
                         </set-metadata>
                         <div class="entries_list">
                             <ul>

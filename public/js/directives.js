@@ -38,16 +38,28 @@ directives.directive('setMetadata', function() {
         replace: true,
         transclude: true,
         link: function(scope, elem, attrs) {
-            scope.dialogStyle = {};
-            scope.dialogStyle.width = window.screen.width + 'px';
-            scope.dialogStyle.height = window.screen.height + 'px';
-            scope.dialogStyle['z-index'] = 9999;
+            scope.overlayStyle = {};
+            // scope.dialogStyle = {};
+            scope.overlayStyle.width = window.screen.width + 'px';
+            scope.overlayStyle.height = window.screen.height + 'px';
+            scope.overlayStyle['z-index'] = 9999;
+
+            // if(attrs.width) {
+            //     scope.dialogStyle.width = attrs.width;
+            // }
+
+            // if(attrs.height) {
+            //     scope.dialogStyle.height = attrs.height;
+            // }
+
+            // scope.dialogStyle['z-index'] = 10000;
+
             scope.hideModal = function() {
                 scope.show = false;
             };
         },
         template: '<div class="set-metadata-modal" ng-show="show">' +
-                    '<div class="overlay" ng-style="dialogStyle" ng-click="hideModal()"></div>' +
+                    '<div class="overlay" ng-style="overlayStyle" ng-click="hideModal()"></div>' +
                     '<div class="set-metadata-modal-dialog">' +
                         '<div class="set-metadata-modal-close" ng-click="hideModal()">X</div>' +
                         '<div class="set-metadata-modal-dialog-content" ng-transclude></div>' +

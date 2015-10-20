@@ -129,7 +129,7 @@ input {
   /* A centered div above the overlay with a box shadow. */
   z-index:10000;
   position: fixed;
-  width: 100px; /* Default */
+  width: 400px; /* Default */
 
   /* Center the dialog */
   top: 20%;
