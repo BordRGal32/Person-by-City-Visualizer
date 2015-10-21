@@ -38,15 +38,29 @@ controllers.controller('AppCtrl', function ($scope) {
         $scope.source = '';
         $scope.target = '';
         $('#personName').focus();
-
         currentGraph.expandGraph($scope.entries);
-
     };
+
+
+  $scope.status = {
+    isopen: false
+  };
+
 
     $scope.modalShown = false;
     $scope.toggleModal = function() {
         $scope.modalShown = !$scope.modalShown;
     };
+
+      $scope.toggled = function(open) {
+    $log.log('Dropdown is now: ', open);
+  };
+
+  $scope.toggleDropdown = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.status.isopen = !$scope.status.isopen;
+  };
 });
 
 

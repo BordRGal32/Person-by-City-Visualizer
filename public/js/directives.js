@@ -11,17 +11,20 @@ directives.directive('colorPicker', function() {
         },
         restrict: 'AE',
         replace: true,
-        template:   '<div class="dropdown colorpicker">' +
-        ' <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' +
+        template:   '<div class="dropdown btn-group">' +
+        '<button class="btn sel-color-btn"><div class=sel-color ng-style="selColor"></div></button>' +
+        '<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' +
         '<span class="caret"></span></button>' +
         '<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">' +
         '<li ng-repeat="color in colors"><a ng-click="dropboxSelected(color)" style="height:20px; background:{{color}}"></a></li>' +
         '</ul></div>' ,
         link: function(scope, elem, attrs) {
             var list = elem.find('ul')[0];
-
             scope.dropboxSelected = function(color) {
                 scope.selectedcolor = color;
+                scope.selColor = {
+                    background : color
+                };
             }
 
         }
@@ -39,21 +42,9 @@ directives.directive('setMetadata', function() {
         transclude: true,
         link: function(scope, elem, attrs) {
             scope.overlayStyle = {};
-            // scope.dialogStyle = {};
             scope.overlayStyle.width = window.screen.width + 'px';
             scope.overlayStyle.height = window.screen.height + 'px';
             scope.overlayStyle['z-index'] = 9999;
-
-            // if(attrs.width) {
-            //     scope.dialogStyle.width = attrs.width;
-            // }
-
-            // if(attrs.height) {
-            //     scope.dialogStyle.height = attrs.height;
-            // }
-
-            // scope.dialogStyle['z-index'] = 10000;
-
             scope.hideModal = function() {
                 scope.show = false;
             };
